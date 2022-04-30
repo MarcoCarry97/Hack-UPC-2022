@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatefulWidget
@@ -18,7 +19,11 @@ class SearchBarState extends State<SearchBar>
   Widget build(BuildContext context) {
     return Padding( child: Row(
       children:[
-        Expanded(child:TextField()),
+        Expanded(child:TextField(
+          decoration: InputDecoration(
+              hintText: "Search Here!"
+          ),
+        )),
         TextButton(onPressed: ()=>{},child: Icon(Icons.filter),
         ),
         TextButton(onPressed: ()=>{},child: Icon(Icons.search),),
