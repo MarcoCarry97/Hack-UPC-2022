@@ -1,5 +1,7 @@
-# Hack UPC Project (https://sqlillo.com/)
+# Hack UPC Project
+
 ## Team members:
+
 - Monika Dziedzic
 - Marco Carega
 - Nitish Arya
@@ -7,12 +9,8 @@
 
 <br>
 
-## How to run it on Ubuntu
-`sudo apt update && sudo apt install cargo`
-<br>
+Show db connection:
 
-Create a project: <br>
-`cargo new hackUPCgame` <br>
-`cd hackUPCgame/` <br>
-
-Then, run `./ubuntu_runner_rs --run src/main.rs` from project root.
+- Go to http://localhost:8080/h2-console/
+- JDBC URL: `jdbc:h2:mem:testdb`
+- 
