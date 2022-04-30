@@ -3,6 +3,8 @@ package es.edu.upc.hackaton.controller;
 import es.edu.upc.hackaton.dto.AuthDTO;
 import es.edu.upc.hackaton.dto.ListingDTO;
 import es.edu.upc.hackaton.model.Auth;
+import es.edu.upc.hackaton.model.Listing;
+import es.edu.upc.hackaton.repository.ListingsRepository;
 import es.edu.upc.hackaton.service.AuthService;
 import es.edu.upc.hackaton.service.ListingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,11 @@ public class HelloController {
     @ResponseBody
     public List<ListingDTO> getListings() {
         return listingsService.findAll();
+    }
+
+    @GetMapping("/upvote/{id}")
+    public void upvote(@PathVariable String id) {
+        System.out.println("agchdgchdgmfhjmhf,kerufiuelfuwj,k");
+        listingsService.upvote(Long.parseLong(id));
     }
 }
