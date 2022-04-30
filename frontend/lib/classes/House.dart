@@ -62,4 +62,33 @@ class House
   void addImage(String imageUrl)=>_images.add(imageUrl);
 
   void removeImage(int index)=>_images.removeAt(index);
+
+  static fromJson(json) : House {
+    House house = new House();
+    house._id = json['id'];
+    house.addImage(json['fileURL']);
+    house._owner = json['owner'];
+    house._price = json['priceAmount'];
+    house._priceCurrency = json['priceCurrency'];
+    house._title = json['title'];
+    house._upvotes = json['upvotes'];
+    house._downvotes = json['downvotes'];
+    house._scamCertainty = json['scamCertainty'];
+    return house;
+  }
+
+  /*static fromJson(json) : House {
+  var id = json['id'];
+  var title = json['title'];
+  var owner = json['owner'];
+  var price = json['priceAmount'];
+  var priceCurrency = json['priceCurrency'];
+  var upvotes = json['upvotes'];
+  var downvotes = json['downvotes'];
+  var scamCertainty = json['scamCertainty'];
+
+  House house = new House(id, title, owner, price, upvotes, downvotes, scamCertainty, priceCurrency);
+  house.addImage(json['fileURL']);
+  return house;
+  }*/
 }
