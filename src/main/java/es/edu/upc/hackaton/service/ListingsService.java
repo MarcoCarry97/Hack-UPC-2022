@@ -44,6 +44,11 @@ public class ListingsService {
         saveListing(listing);
     }
 
+    public void downvote(Long id){
+        Listing listing = listingsRepository.findById(id).orElseThrow();
+        listing.setDownvotes(listing.getDownvotes() + 1);
+        saveListing(listing);
+    }
     private String calculateScamCertainty(Integer upvotes, Integer downvotes) {
         if (upvotes == null || downvotes == null) {
             return "0%";

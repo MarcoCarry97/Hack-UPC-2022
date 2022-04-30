@@ -44,4 +44,9 @@ public class Controller {
     public void upvote(@PathVariable String id) {
         listingsService.upvote(Long.parseLong(id));
     }
+
+    @GetMapping("/downvote/{id}")
+    public void downvote(@PathVariable String id) {
+        listingsService.downvote(Long.parseLong(id));
+    }
 }
