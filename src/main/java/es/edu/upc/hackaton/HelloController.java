@@ -6,26 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 public class HelloController {
 
     @Autowired
     private ListingsService listingsService;
 
-    @GetMapping("/")
-    public String index() {
-        return "<meta name=\"google-signin-client_id\" content=\"62730202944-lmjv5pqrd0u8qqkng3ksreq6mpa7325r.apps.googleusercontent.com\">" +
-                "<div class=\"g-signin2\" data-onsuccess=\"onSignIn\"></div>" +
-                "<script src=\"https://apis.google.com/js/platform.js\" async defer></script>";
+    @RequestMapping("/sso")
+    public String sso() {
+        return "sso";
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
     }
 
     @GetMapping(value = "/listings")
