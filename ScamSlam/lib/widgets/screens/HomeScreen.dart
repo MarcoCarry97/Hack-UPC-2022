@@ -21,23 +21,7 @@ class HomeScreen extends StatefulWidget
 
 class HomeScreenState extends State<HomeScreen>
 {
-  AppBar makeAppBar()
-  {
-    return AppBar(
-      title: Text("ScamSlam"),
-      actions: [Padding(padding: EdgeInsets.all(50),
-      child: ElevatedButton(
-          onPressed: ()=>{},
-          child: Icon(Icons.account_circle_outlined,
-              color: Colors.red),
-          style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              primary: Colors.white
 
-          )
-      ))]
-    );
-  }
 
   @override
   Widget build(BuildContext context)
@@ -51,7 +35,7 @@ class HomeScreenState extends State<HomeScreen>
       list.add(h);
     }
     Singleton single=Singleton();
-    single.setAppBar(makeAppBar());
+    //single.setAppBar(makeAppBar());
     return Scaffold(appBar: single.getAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>{},

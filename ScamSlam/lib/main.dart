@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scamslam/widgets/screens/HomeScreen.dart';
+import 'package:scamslam/widgets/screens/LoginScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.red,
       ),
-      home: const HomeScreen()
+      home: const LoginScreen()
     );
   }
 }
