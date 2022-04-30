@@ -1,4 +1,4 @@
-package com.example.springboot;
+package es.edu.upc.hackaton.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;

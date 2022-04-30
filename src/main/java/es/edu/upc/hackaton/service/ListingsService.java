@@ -1,15 +1,46 @@
 package es.edu.upc.hackaton.service;
 
-import org.apache.commons.io.IOUtils;
+import es.edu.upc.hackaton.dto.ListingDTO;
+import es.edu.upc.hackaton.model.Listing;
+import es.edu.upc.hackaton.repository.ListingsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ListingsService {
-    public byte[] loadFile(String filename) throws IOException {
-        InputStream imageStream = getClass().getClassLoader().getResourceAsStream(filename);
-        return IOUtils.toByteArray(imageStream);
+
+    @Autowired
+    private ListingsRepository listingsRepository;
+
+    public void saveListing(Listing listing) {
+        listingsRepository.save(listing);
+    }
+
+    public List<ListingDTO> findAll() {
+        return listingsRepository.findAll()
+                .stream()
+                .map(listing ->
+                        ListingDTO.builder()
+                                .fileURL(listing.getFileURL())
+                                .title(listing.getTitle())
+                                .owner(listing.getOwner())
+                                .priceAmount(listing.getPriceAmount())
+                                .priceCurrency(listing.getPriceCurrency())
+                                .upvotes(listing.getUpvotes())
+                                .downvotes(listing.getDownvotes())
+                                .scamCertainty(calculateScamCertainty(listing.getUpvotes(), listing.getDownvotes()))
+                                .build()
+                )
+                .collect(Collectors.toList());
+    }
+
+    private String calculateScamCertainty(Integer upvotes, Integer downvotes) {
+        if (upvotes == null || downvotes == null) {
+            return "0%";
+        }
+        return ((double) upvotes / (upvotes + downvotes)) * 100 + "%";
     }
 }

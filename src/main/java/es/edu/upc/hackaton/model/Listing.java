@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Currency;
 
 @Entity
 @Table
@@ -16,14 +17,20 @@ import javax.persistence.Table;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Auth {
+public class Listing {
     @Id
     @Column
-    private String email;
+    private String fileURL;
     @Column
-    private String firstName;
+    private String owner;
     @Column
-    private String lastName;
+    private Double priceAmount;
     @Column
-    private String encodedPassword;
+    private Currency priceCurrency;
+    @Column
+    private String title;
+    @Column
+    private Integer upvotes;
+    @Column
+    private Integer downvotes;
 }

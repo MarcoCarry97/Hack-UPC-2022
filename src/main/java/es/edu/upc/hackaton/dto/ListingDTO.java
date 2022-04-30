@@ -1,17 +1,21 @@
 package es.edu.upc.hackaton.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.*;
 
 import java.util.Currency;
 
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class ListingDTO {
-    private MultipartFile file;
+    private String fileURL;
     private String owner;
     private Double priceAmount;
     private Currency priceCurrency;
     private String title;
+    private Integer upvotes;
+    private Integer downvotes;
+    private String scamCertainty;
 }
