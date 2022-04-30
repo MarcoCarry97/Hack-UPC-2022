@@ -24,6 +24,7 @@ public class ListingsService {
                 .stream()
                 .map(listing ->
                         ListingDTO.builder()
+                                .id(listing.getId())
                                 .fileURL(listing.getFileURL())
                                 .title(listing.getTitle())
                                 .owner(listing.getOwner())

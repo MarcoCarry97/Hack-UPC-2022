@@ -10,6 +10,7 @@ import java.util.Currency;
 @NoArgsConstructor
 @Builder
 public class ListingDTO {
+    private Long id;
     private String fileURL;
     private String owner;
     private Double priceAmount;

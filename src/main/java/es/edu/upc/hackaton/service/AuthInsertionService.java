@@ -14,7 +14,6 @@ public class AuthInsertionService {
     @Autowired
     private AuthService authService;
 
-    //    @PostMapping("/add-auth")
     @EventListener(ApplicationReadyEvent.class)
     public void insertAuthentication() {
 
