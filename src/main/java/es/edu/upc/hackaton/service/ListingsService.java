@@ -38,40 +38,10 @@ public class ListingsService {
                 .collect(Collectors.toList());
     }
 
-    public ListingDTO findById(Long id) {
-        return listingsRepository.findById(id)
-                .stream()
-                .map(listing ->
-                        ListingDTO.builder()
-                                .id(listing.getId())
-                                .fileURL(listing.getFileURL())
-                                .title(listing.getTitle())
-                                .owner(listing.getOwner())
-                                .priceAmount(listing.getPriceAmount())
-                                .priceCurrency(listing.getPriceCurrency())
-                                .upvotes(listing.getUpvotes())
-                                .downvotes(listing.getDownvotes())
-                                .scamCertainty(calculateScamCertainty(listing.getUpvotes(), listing.getDownvotes()))
-                                .build()
-                )
-                .collect(Collectors.toList()).get(0);
-    }
-
     public void upvote(Long id) {
-        ListingDTO ldto = findById(id);
-        ldto.setUpvotes(ldto.getUpvotes() + 1);
-
-        Listing lis = Listing.builder().id(ldto.getId())
-                .fileURL(ldto.getFileURL())
-                .title(ldto.getTitle())
-                .owner(ldto.getOwner())
-                .priceAmount(ldto.getPriceAmount())
-                .priceCurrency(ldto.getPriceCurrency())
-                .upvotes(ldto.getUpvotes())
-                .downvotes(ldto.getDownvotes())
-                .build();
-
-        saveListing(lis);
+        Listing listing = listingsRepository.findById(id).orElseThrow();
+        listing.setUpvotes(listing.getUpvotes() + 1);
+        saveListing(listing);
     }
 
     private String calculateScamCertainty(Integer upvotes, Integer downvotes) {
