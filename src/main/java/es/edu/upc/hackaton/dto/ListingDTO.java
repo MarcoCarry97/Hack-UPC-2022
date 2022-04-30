@@ -1,4 +1,4 @@
-package es.edu.upc.hackaton.model;
+package es.edu.upc.hackaton.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.util.Currency;
 
 @Getter
 @Builder
-public class Listing {
+public class ListingDTO {
     private MultipartFile file;
     private String owner;
     private Double priceAmount;
