@@ -25,7 +25,7 @@ class HomeScreenState extends State<HomeScreen>
   {
     return AppBar(
       title: Text("ScamSlam"),
-      actions: [Padding(padding: EdgeInsets.all(5),
+      actions: [Padding(padding: EdgeInsets.all(50),
       child: ElevatedButton(
           onPressed: ()=>{},
           child: Icon(Icons.account_circle_outlined,
@@ -47,7 +47,7 @@ class HomeScreenState extends State<HomeScreen>
     for(int i=0;i<=10;i++)
     {
       House h=House("Sample","",0);
-      h.addImage(Image.network("https://mymodernmet.com/wp/wp-content/uploads/2017/03/gabrielius-khiterer-stray-cats-11.jpg"));
+      h.addImage("https://mymodernmet.com/wp/wp-content/uploads/2017/03/gabrielius-khiterer-stray-cats-11.jpg");
       list.add(h);
     }
     Singleton single=Singleton();

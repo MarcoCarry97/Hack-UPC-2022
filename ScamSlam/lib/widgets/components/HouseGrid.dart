@@ -18,18 +18,17 @@ class HouseGrid extends StatelessWidget
     return Expanded(
         child:GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2
+          crossAxisCount: 3
         ),
         children: List.generate(_houses.length,
-                (index)=>makeTile(index)
+                (index)=> makeTile(_houses[index])
         )
       )
     );
   }
 
-  GridTile makeTile(int index)
+  GridTile makeTile(House house)
   {
-    print(index);
     return GridTile(
 
       child: Padding(
@@ -37,7 +36,7 @@ class HouseGrid extends StatelessWidget
         child:FittedBox(
             fit:BoxFit.fill,
             child:Container(
-                child: _houses[index].getImages()[0]
+                child: Image.network(house.getImages()[0])
             )
         )
       )
