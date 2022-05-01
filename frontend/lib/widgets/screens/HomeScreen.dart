@@ -31,8 +31,9 @@ class HomeScreenState extends State<HomeScreen>
 {
   String BACKEND_URL = "https://3a8b-147-83-201-134.eu.ngrok.io/";
 
-  List<House> _list=[];
+  List<House> list=[];
   bool _checked=false;
+  TextEditingController searchControl=TextEditingController();
 
   Future<List<House>> getHouses(String url) async
   {
@@ -75,8 +76,8 @@ class HomeScreenState extends State<HomeScreen>
       ),
       body: Column(
         children: [
-          SearchBar(),
-          HouseGrid(_list)
+          makeSearchBar(),
+          HouseGrid(this.list)
         ],
       ),
     );
@@ -85,9 +86,57 @@ class HomeScreenState extends State<HomeScreen>
   void updateState(List<House> value)
   {
     setState(() {
-
-      _list=value;
+        list=value;
       _checked=true;
     });
+  }
+
+  Padding makeSearchBar()
+  {
+    return Padding( child: Row(
+      children:[
+        Expanded(child:TextField(
+          controller: searchControl,
+          decoration: InputDecoration(
+              hintText: "Search Here!"
+          ),
+        )),
+        TextButton(onPressed: ()=>{},child: Icon(Icons.filter),
+        ),
+        TextButton(onPressed: ()=>{
+          textSearch(searchControl.text).then((value)=>
+              updateState(value)
+          )
+        },child: Icon(Icons.search),),
+        TextButton(onPressed: ()=>{}, child: Icon(Icons.image_search))
+      ],
+
+
+    ),
+      padding: EdgeInsets.all(5),
+    );
+  }
+
+  Future<List<House>> textSearch(String searchString) async
+  {
+    String url="https://f825-84-78-248-107.eu.ngrok.io/";
+    Uri uri=Uri.parse(url + "search-listings/"+searchString);
+    final response = await http.get(uri);
+    print("Status: ${response.statusCode}, Body: ${response.body}");
+    if(response.statusCode==200)
+    {
+      var codec=JsonCodec();
+      var js= codec.decode(response.body) as List<dynamic>;
+
+      List<House> list=[];
+      for(dynamic elem in js)
+      {
+        House h=House.fromJson(elem as Map<String,dynamic>);
+        list.add(h);
+      }
+      // .toList() as List<House>;
+      return list;
+    }
+    else return [];
   }
 }
