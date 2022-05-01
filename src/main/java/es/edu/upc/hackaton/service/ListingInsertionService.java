@@ -19,7 +19,7 @@ public class ListingInsertionService {
     public void saveListings() {
         List<Listing> listings = new ArrayList<>();
         listings.add(Listing.builder()
-                .fileURL("https://media.timeout.com/images/105737732/750/422/image.jpg")
+                .fileURL("https://github.com/emanhamed/Houses-dataset/blob/master/Houses%20Dataset/115_bedroom.jpg")
                 .owner("Monika Dziedzic")
                 .title("Well-communicated property close to Plaza de Catalunya")
                 .priceAmount(500.0)
@@ -79,7 +79,7 @@ public class ListingInsertionService {
                 .build());
 
         listings.add(Listing.builder()
-                .fileURL("https://github.com/emanhamed/Houses-dataset/blob/master/Houses%20Dataset/105_bderoom.jpg")
+                .fileURL("https://github.com/emanhamed/Houses-dataset/blob/master/Houses%20Dataset/105_bedroom.jpg")
                 .owner("Marco Belluchi")
                 .title("Room in an International Apartment near Plaza españa ")
                 .priceAmount(650.0)
