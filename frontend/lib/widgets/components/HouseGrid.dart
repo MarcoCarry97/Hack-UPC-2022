@@ -36,9 +36,10 @@ class HouseGrid extends StatelessWidget
         ),
         footer: GridTileBar(
             backgroundColor: Colors.white,
-            title:Row(
+            title:Column(
               children: [
-                Text("Sample")
+                Text(house.getOwner()+", ",style: TextStyle(color: Colors.black),),
+                Text(house.getPriceCurrency()+" ${house.getPrice()}",style: TextStyle(color: Colors.black),),
               ],
             )),
         child: Padding(
