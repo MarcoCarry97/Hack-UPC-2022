@@ -19,11 +19,10 @@ public class Controller {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/auth")
+    @GetMapping("/auth")
     public ResponseEntity authenticate(@RequestBody AuthDTO authDTO) {
-        Auth auth = Auth.builder().email(authDTO.getEmail())
-                .firstName(authDTO.getFirstName())
-                .lastName(authDTO.getLastName())
+        Auth auth = Auth.builder()
+                .email(authDTO.getEmail())
                 .encodedPassword(authDTO.getEncodedPassword())
                 .build();
 
