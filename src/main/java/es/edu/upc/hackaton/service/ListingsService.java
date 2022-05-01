@@ -10,7 +10,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,10 +28,11 @@ public class ListingsService {
                 .stream()
                 .map(listing -> {
                             String realEstateAPIUrl = getRealEstateAPIUrl(listing.getFileURL());
-                            Optional<RealEstateDTO> realEstateDTO = Optional.empty();
+                            RealEstateDTO realEstateDTO = new RealEstateDTO();
                             try {
-                                realEstateDTO = Optional.ofNullable(restTemplate.getForObject(realEstateAPIUrl, RealEstateDTO.class));
+                                realEstateDTO = restTemplate.getForObject(realEstateAPIUrl, RealEstateDTO.class);
                             } catch (HttpClientErrorException.TooManyRequests e) {
+                                realEstateDTO.setScore(0.0);
                                 System.err.println("Too many requests! Got null score, defaulting to 0.0");
                             }
 
@@ -45,7 +45,7 @@ public class ListingsService {
                                     .priceCurrency(listing.getPriceCurrency())
                                     .upvotes(listing.getUpvotes())
                                     .downvotes(listing.getDownvotes())
-                                    .scamCertainty(calculateScamCertainty(listing, realEstateDTO.map(RealEstateDTO::getScore).orElse(0.0)))
+                                    .scamCertainty(calculateScamCertainty(listing, realEstateDTO.getScore()))
                                     .build();
                         }
                 )

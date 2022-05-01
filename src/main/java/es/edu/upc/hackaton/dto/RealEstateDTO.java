@@ -48,7 +48,7 @@ class RealEstateDTODeserializer extends StdDeserializer<RealEstateDTO> {
     public RealEstateDTO deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         JsonNode productNode = jp.getCodec().readTree(jp);
         RealEstateDTO realEstateDTO = new RealEstateDTO();
-        realEstateDTO.setScore(Optional.ofNullable(productNode.get("response").get("solutions").get("re_condition").get("score")).map(JsonNode::doubleValue).orElse(null));
+        realEstateDTO.setScore(Optional.ofNullable(productNode.get("response").get("solutions").get("re_condition").get("score")).map(JsonNode::doubleValue).get());
         return realEstateDTO;
     }
 }
