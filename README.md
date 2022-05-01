@@ -26,6 +26,9 @@ people who were already scammed. You can view the confidence percent of a proper
 percentage of user votes and an AI system which rates the property according to the images(restb.ai). You can also
 upvote or downvote a property if you feel it is a right or a wrong listing.
 
+The full demonstration of what our application is capable of is available in the root project folder in the file
+named `app_video.mp4`.
+
 ## How we built it
 
 We built a functional website with the Frontend implemented in Flutter while testing UI iterations on a mobile device
