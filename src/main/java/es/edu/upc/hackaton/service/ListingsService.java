@@ -84,6 +84,8 @@ public class ListingsService {
         if (listing.getDownvotes() == null) {
             return "0%";
         }
-        return ((double) listing.getUpvotes() / (listing.getUpvotes() + listing.getDownvotes()) + score / listing.getPriceAmount()) * 100 + "%";
+
+        String scamCertainty = String.valueOf(((double) listing.getUpvotes() / (listing.getUpvotes() + listing.getDownvotes()) + score / listing.getPriceAmount()) * 100);
+        return scamCertainty.substring(0, Math.min(5, scamCertainty.length())) + "%";
     }
 }
