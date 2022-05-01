@@ -32,7 +32,7 @@ class HouseGrid extends StatelessWidget
     return GridTile(
         header: GridTileBar(
           backgroundColor: Colors.white,
-          trailing: Text("0%"),
+          trailing: Text(house.getScamCertainty()),
         ),
         footer: GridTileBar(
             backgroundColor: Colors.white,
