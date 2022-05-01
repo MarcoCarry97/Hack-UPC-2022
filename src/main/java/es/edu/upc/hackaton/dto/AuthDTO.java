@@ -9,7 +9,5 @@ import lombok.ToString;
 @ToString
 public class AuthDTO {
     private String email;
-    private String firstName;
-    private String lastName;
     private String encodedPassword;
 }
