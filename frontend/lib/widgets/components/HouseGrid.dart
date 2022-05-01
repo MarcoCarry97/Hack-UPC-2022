@@ -18,7 +18,7 @@ class HouseGrid extends StatelessWidget
     return Expanded(
         child:GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3
+          crossAxisCount: 2
         ),
         children: List.generate(_houses.length,
                 (index)=> makeTile(_houses[index])
@@ -30,17 +30,26 @@ class HouseGrid extends StatelessWidget
   GridTile makeTile(House house)
   {
     return GridTile(
-
-      child: Padding(
+        header: GridTileBar(
+          backgroundColor: Colors.white,
+          trailing: Text("0%"),
+        ),
+        footer: GridTileBar(
+            backgroundColor: Colors.white,
+            title:Row(
+              children: [
+                Text("Sample")
+              ],
+            )),
+        child: Padding(
         padding: EdgeInsets.all(5),
         child:FittedBox(
-            fit:BoxFit.fill,
+            fit:BoxFit.contain,
             child:Container(
                 child: Image.network(house.getImages()[0])
             )
         )
-      )
-    );
+    ));
   }
 }
 
