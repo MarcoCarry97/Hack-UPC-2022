@@ -6,10 +6,13 @@ import es.edu.upc.hackaton.model.Listing;
 import es.edu.upc.hackaton.repository.ListingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Currency;
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 @Component
@@ -18,6 +21,7 @@ public class ListingsService {
     @Autowired
     private ListingsRepository listingsRepository;
     private final RestTemplate restTemplate = new RestTemplate();
+    private final BiPredicate<String, String> lowercaseContainsText = (str, text) -> (str.toLowerCase().contains(text));
 
     public void saveListing(Listing listing) {
         listingsRepository.save(listing);
@@ -42,7 +46,7 @@ public class ListingsService {
                                     .title(listing.getTitle())
                                     .owner(listing.getOwner())
                                     .priceAmount(listing.getPriceAmount())
-                                    .priceCurrency(listing.getPriceCurrency())
+                                    .priceCurrency(Currency.getInstance(listing.getPriceCurrency()))
                                     .upvotes(listing.getUpvotes())
                                     .downvotes(listing.getDownvotes())
                                     .scamCertainty(calculateScamCertainty(listing, realEstateDTO.getScore()))
@@ -54,6 +58,14 @@ public class ListingsService {
 
     private String getRealEstateAPIUrl(String fileURL) {
         return "https://api-us.restb.ai/vision/v2/multipredict?model_id=re_condition&image_url=" + fileURL + "?raw=true&client_key=f54dd2143572f2c8fdb88896b8b84695782cea5f5c41ca2b119e49232d29554a";
+    }
+
+    public List<ListingDTO> searchByText(String text) {
+        return findAll().stream().filter(listingDTO -> lowercaseContainsText.test(listingDTO.getOwner(), text) ||
+                        lowercaseContainsText.test(listingDTO.getPriceAmount().toString(), text) ||
+                        lowercaseContainsText.test(listingDTO.getPriceCurrency().toString(), text) ||
+                        lowercaseContainsText.test(listingDTO.getTitle(), text))
+                .collect(Collectors.toList());
     }
 
     public void upvote(Long id) {

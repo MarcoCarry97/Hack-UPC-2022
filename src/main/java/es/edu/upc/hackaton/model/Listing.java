@@ -1,6 +1,9 @@
 package es.edu.upc.hackaton.model;
 
 import lombok.*;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
 
 import javax.persistence.*;
 import java.util.Currency;
@@ -12,6 +15,7 @@ import java.util.Currency;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Indexed
 public class Listing {
     @Id
     @Column
@@ -20,12 +24,16 @@ public class Listing {
     @Column
     private String fileURL;
     @Column
+    @Field(termVector = TermVector.YES)
     private String owner;
     @Column
+    @Field(termVector = TermVector.YES)
     private Double priceAmount;
     @Column
-    private Currency priceCurrency;
+    @Field(termVector = TermVector.YES)
+    private String priceCurrency;
     @Column
+    @Field(termVector = TermVector.YES)
     private String title;
     @Column
     private Integer upvotes;

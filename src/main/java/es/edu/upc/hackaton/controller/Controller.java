@@ -40,6 +40,12 @@ public class Controller {
         return listingsService.findAll();
     }
 
+    @GetMapping("/search-listings/{text}")
+    @ResponseBody
+    public List<ListingDTO> searchByText(@PathVariable String text) {
+        return listingsService.searchByText(text);
+    }
+
     @GetMapping("/upvote/{id}")
     public void upvote(@PathVariable String id) {
         listingsService.upvote(Long.parseLong(id));

@@ -7,7 +7,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 
 @Component
@@ -23,7 +22,7 @@ public class ListingInsertionService {
                 .owner("Monika Dziedzic")
                 .title("Well-communicated property close to Plaza de Catalunya")
                 .priceAmount(500.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(86)
                 .downvotes(14)
                 .build());
@@ -33,7 +32,7 @@ public class ListingInsertionService {
                 .owner("Ping Pong")
                 .title("Bright room close to the city centre")
                 .priceAmount(360.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(78)
                 .downvotes(2)
                 .build());
@@ -43,7 +42,7 @@ public class ListingInsertionService {
                 .owner("Rafael Jamal")
                 .title("exterior room with everything close, near Joanic metro")
                 .priceAmount(420.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(13)
                 .downvotes(15)
                 .build());
@@ -53,7 +52,7 @@ public class ListingInsertionService {
                 .owner("Abdullah")
                 .title("room in calle de Calabria")
                 .priceAmount(300.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(80)
                 .downvotes(6)
                 .build());
@@ -63,7 +62,7 @@ public class ListingInsertionService {
                 .owner("Tamara")
                 .title("cozy room in esplugues de llobregat")
                 .priceAmount(350.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(5)
                 .downvotes(20)
                 .build());
@@ -73,7 +72,7 @@ public class ListingInsertionService {
                 .owner("Mario Torres")
                 .title("Room only for girls/female students")
                 .priceAmount(250.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(112)
                 .downvotes(20)
                 .build());
@@ -83,7 +82,7 @@ public class ListingInsertionService {
                 .owner("Marco Belluchi")
                 .title("Room in an International Apartment near Plaza españa ")
                 .priceAmount(650.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(5)
                 .downvotes(50)
                 .build());
@@ -93,7 +92,7 @@ public class ListingInsertionService {
                 .owner("Monika Dziedzic")
                 .title("Well-communicated property close to Plaza de Catalunya")
                 .priceAmount(350.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(99)
                 .downvotes(2)
                 .build());
@@ -103,7 +102,7 @@ public class ListingInsertionService {
                 .owner("Tamara")
                 .title("Room for students for long term in Calle Mallorca")
                 .priceAmount(425.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(112)
                 .downvotes(25)
                 .build());
@@ -113,7 +112,7 @@ public class ListingInsertionService {
                 .owner("Pablo Vizcano")
                 .title("Independent house in Manresa")
                 .priceAmount(1100.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(5)
                 .downvotes(13)
                 .build());
@@ -123,7 +122,7 @@ public class ListingInsertionService {
                 .owner("Angel")
                 .title("interior room with window for workers only")
                 .priceAmount(600.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(50)
                 .downvotes(40)
                 .build());
@@ -133,7 +132,7 @@ public class ListingInsertionService {
                 .owner("Tamara")
                 .title("entire flat for rent for working professionals only")
                 .priceAmount(2000.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(14)
                 .downvotes(14)
                 .build());
@@ -143,7 +142,7 @@ public class ListingInsertionService {
                 .owner("Sergio Garcia")
                 .title("room for rent only in July")
                 .priceAmount(400.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(50)
                 .downvotes(19)
                 .build());
@@ -153,7 +152,7 @@ public class ListingInsertionService {
                 .owner("Maria Antonio")
                 .title("Bright apartment near Plaza Catalunya")
                 .priceAmount(2500.0)
-                .priceCurrency(Currency.getInstance("EUR"))
+                .priceCurrency("EUR")
                 .upvotes(156)
                 .downvotes(206)
                 .build());
