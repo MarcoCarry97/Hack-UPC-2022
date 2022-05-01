@@ -1,6 +1,8 @@
 
 
-import 'dart:js';
+
+
+//import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:scamslam/widgets/components/HouseGrid.dart';
@@ -11,7 +13,7 @@ import '../../classes/House.dart';
 import '../../tools/Singleton.dart';
 
 import 'dart:async';
-import 'dart:convert' as convert;
+import 'dart:convert';
 import "dart:core";
 
 class HomeScreen extends StatefulWidget
@@ -30,6 +32,7 @@ class HomeScreenState extends State<HomeScreen>
   String BACKEND_URL = "https://3a8b-147-83-201-134.eu.ngrok.io/";
 
   List<House> _list=[];
+  bool _checked=false;
 
   Future<List<House>> getHouses(String url) async
   {
@@ -38,22 +41,23 @@ class HomeScreenState extends State<HomeScreen>
     print("Status: ${response.statusCode}, Body: ${response.body}");
     if(response.statusCode==200)
     {
-      var jsResponse=convert.jsonDecode(response.body) as List<Map<String,dynamic>>;
+      var codec=JsonCodec();
+      var js= codec.decode(response.body) as List<dynamic>;
+      //print("okokokokok");
+      //print(js);
+      //for(var elem in js)
+
+
+
+
+
       List<House> list=[];
-      for(var elem in jsResponse)
+      for(dynamic elem in js)
       {
-        House h=House.fromMap(elem);
+        House h=House.fromJson(elem as Map<String,dynamic>);
         list.add(h);
       }
-      
-
-
-
-
-
-      List<House> list=codec.decode(response.body)
-      .map((object)=>House.fromJson(object))
-      .toList();
+      // .toList() as List<House>;
       return list;
     }
     else return [];
@@ -62,12 +66,11 @@ class HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context)
   {
-    List<House> _list=[];
-
-    getHouses("https://f825-84-78-248-107.eu.ngrok.io/").then((List<House> value) =>
-    {
-      updateState(value)
-    });
+    if(!_checked)
+      getHouses("https://f825-84-78-248-107.eu.ngrok.io/").then((List<House> value) =>
+      {
+        updateState(value)
+      });
 
     Singleton single=Singleton();
     //single.setAppBar(makeAppBar());
@@ -89,7 +92,9 @@ class HomeScreenState extends State<HomeScreen>
   void updateState(List<House> value)
   {
     setState(() {
+
       _list=value;
+      _checked=true;
     });
   }
 }
