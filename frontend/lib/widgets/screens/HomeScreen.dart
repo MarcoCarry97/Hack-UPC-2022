@@ -43,13 +43,6 @@ class HomeScreenState extends State<HomeScreen>
     {
       var codec=JsonCodec();
       var js= codec.decode(response.body) as List<dynamic>;
-      //print("okokokokok");
-      //print(js);
-      //for(var elem in js)
-
-
-
-
 
       List<House> list=[];
       for(dynamic elem in js)
