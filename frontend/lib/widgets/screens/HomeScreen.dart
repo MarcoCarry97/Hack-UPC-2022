@@ -61,7 +61,7 @@ class HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context)
   {
     if(!_checked)
-      getHouses("https://f825-84-78-248-107.eu.ngrok.io/").then((List<House> value) =>
+      getHouses("https://b818-84-78-248-107.eu.ngrok.io/").then((List<House> value) =>
       {
         updateState(value)
       });
@@ -119,7 +119,7 @@ class HomeScreenState extends State<HomeScreen>
 
   Future<List<House>> textSearch(String searchString) async
   {
-    String url="https://f825-84-78-248-107.eu.ngrok.io/";
+    String url="https://b818-84-78-248-107.eu.ngrok.io/";
     Uri uri=Uri.parse(url + "search-listings/"+searchString);
     final response = await http.get(uri);
     print("Status: ${response.statusCode}, Body: ${response.body}");
